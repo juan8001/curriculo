@@ -44,6 +44,9 @@ a{
 a:hover{
     text-decoration: underline;
 }
+.contato{
+    font-size: 16px;
+}
 .galeria{
     position: relative;
     width: 100%;
