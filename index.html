@@ -1,0 +1,247 @@
+import os
+
+# Definindo o conteúdo do HTML
+html_content = """
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - Juan Luis Montano Marin</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --accent-color: #e67e22;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--primary-color);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 28pt;
+        }
+
+        .contact-info {
+            margin-top: 10px;
+            font-size: 10pt;
+            color: #666;
+        }
+
+        .contact-info span {
+            margin: 0 10px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+            text-transform: uppercase;
+            font-size: 14pt;
+            margin-top: 30px;
+            background: #f9f9f9;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .summary {
+            font-style: italic;
+            color: #555;
+            text-align: justify;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .skill-category strong {
+            color: var(--secondary-color);
+        }
+
+        .project, .experience {
+            margin-bottom: 20px;
+        }
+
+        .project-title, .job-title {
+            font-weight: bold;
+            color: var(--text-color);
+            display: block;
+            font-size: 12pt;
+        }
+
+        .tech-tags {
+            font-size: 9pt;
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        ul {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .education-item {
+            margin-bottom: 10px;
+        }
+
+        .humor-note {
+            font-size: 9pt;
+            color: var(--accent-color);
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; max-width: 100%; border: none; }
+            header { border-bottom: 1px solid #ccc; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Juan Luis Montano Marin</h1>
+        <div class="contact-info">
+            Rua Hermínia, 40 - Apto 201 - Cachambi, Rio de Janeiro - RJ<br>
+            <span><strong>Fone:</strong> (21) 97923-2953</span> | 
+            <span><strong>E-mail:</strong> juanluis.montano@exemplo.com</span><br>
+            <span><strong>LinkedIn:</strong> linkedin.com/in/seu-perfil</span> | 
+            <span><strong>GitHub:</strong> github.com/seu-usuario</span>
+        </div>
+        <p><strong>Disponibilidade:</strong> Presencial (Centro do RJ) | Regime PJ</p>
+    </header>
+
+    <section>
+        <h2>Resumo Profissional</h2>
+        <p class="summary">
+            Desenvolvedor Full Stack (Web e Mobile) com perfil de engenharia robusto, focado na entrega de qualidade e senso de dono. Especialista na criação de ecossistemas tecnológicos de ponta a ponta, desde Edge Computing (APIs em microcontroladores) até interfaces móveis modernas. Elevada capacidade analítica para manutenção e modernização de sistemas legados (VB6/SQL Server) para stacks modernas (.NET 8/Flutter/Node.js).
+        </p>
+    </section>
+
+    <section>
+        <h2>Hard Skills & Tecnologias</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <strong>Backend & Cloud:</strong> ASP.NET (C#), Node.js (TypeScript), PHP7, RESTful APIs.
+            </div>
+            <div class="skill-category">
+                <strong>Mobile & Front:</strong> Flutter (Dart), Android Nativo, HTML5/CSS3, UX/UI Design.
+            </div>
+            <div class="skill-category">
+                <strong>Banco de Dados:</strong> SQL Server (T-SQL), Modelagem Relacional, Migração de Dados.
+            </div>
+            <div class="skill-category">
+                <strong>Sistemas Legados:</strong> VB6 (Visual Basic 6), Engenharia Reversa e Integração.
+            </div>
+            <div class="skill-category">
+                <strong>IoT & Embarcados:</strong> C/C++, ESP-01, ESP32, STM8, RFID, Edge Computing.
+            </div>
+            <div class="skill-category">
+                <strong>Novas Techs:</strong> IA (Redes Neurais/CNN), Solidity (Blockchain/Web3).
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Projetos de Engenharia de Destaque</h2>
+        
+        <div class="project">
+            <span class="project-title">Ecossistema IoT e Controle de Acesso (End-to-End)</span>
+            <span class="tech-tags">ASP.NET (C# .NET 8) | Flutter | ESP-01 | RESTful API</span>
+            <ul>
+                <li><strong>Hardware/API Embarcada:</strong> Transformação de um ESP-01 em um servidor autônomo com API RESTful em C++, incluindo sistema de criptografia e gerenciamento de whitelist em memória.</li>
+                <li><strong>Backend:</strong> Desenvolvimento de API em C# para orquestração, sincronização e persistência de dados.</li>
+                <li><strong>Mobile:</strong> App em Flutter consumindo a API REST do hardware para monitoramento em tempo real.</li>
+            </ul>
+        </div>
+
+        <div class="project">
+            <span class="project-title">Engenharia Reversa e Central PABX Customizada</span>
+            <span class="tech-tags">STM8 | RF 425Hz | C (Bare-Metal) | Eletrônica de Potência</span>
+            <ul>
+                <li>Modificação de placa PGM Xelpon via bypass de hardware e acesso direto à memória.</li>
+                <li>Integração de microcontrolador STM8 para decodificação de sinais 425Hz, convertendo o dispositivo em uma central PABX para videoporteiros.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Experiência Profissional</h2>
+        <div class="experience">
+            <span class="job-title">Prontolar - Técnico Especializado em Eletrônica</span>
+            <span>2 anos | Rio de Janeiro, RJ</span>
+            <ul>
+                <li>Manutenção de precisão em nível de componente (SMD/PTH) em equipamentos de áudio complexos.</li>
+                <li>Diagnóstico estrutural em PCBs, fontes chaveadas e conversores de tensão.</li>
+                <li>Habilidade refinada em depuração de hardware, aplicada à resolução de bugs lógicos em software.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Formação e Especializações</h2>
+        <div class="education-item">
+            <strong>Arquitetura de Sistemas de Software</strong> - Prof. Raul Waslawik <span class="humor-note">(Vítima sobrevivente do Raul Waslawik)</span>
+        </div>
+        <div class="education-item">
+            <strong>Bootcamp Ciência de Dados</strong> - Estatística, Redes Neurais Convolucionais (CNN) e Deep Learning.
+        </div>
+        <div class="education-item">
+            <strong>Desenvolvimento Web & PHP7</strong> - Curso Completo.
+        </div>
+        <div class="education-item">
+            <strong>Blockchain & Web3</strong> - Programação Solidity e Smart Contracts (Ethereum).
+        </div>
+        <div class="education-item">
+            <strong>Hacker Ético & Segurança</strong> - Baseado na <i>La Biblia del Hacker</i> e <i>La Biblia de Redes</i> (2006).
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>
+"""
+
+# Salvando o arquivo
+file_path = "curriculo_juan_luis.html"
+with open(file_path, "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print(f"Arquivo gerado com sucesso: {file_path}")
